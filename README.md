@@ -1,7 +1,9 @@
 ![Logo of the project](./images/logo.sample.png)
 
 # Vue Template
-> Vue Template along with webpack. A production ready boilerplate.
+> Additional information or tag line
+
+A brief description of your project, what it is used for.
 
 ## Installing / Getting started
 
@@ -9,24 +11,19 @@ A quick introduction of the minimal setup you need to get a hello world up &
 running.
 
 ```shell
-#yarn install 
-yarn install -g 
+commands here
 ```
 
-## Development
-To start the development use the following commad, your project will be running on http://localhost:8080.
+Here you should say what actually happens when you execute the code above.
 
-```shell
-#yarn install 
-yarn dev
-```
-### Built
-To build the project for production use the following command, gZip is enabled by deafult. Please check your server config to use gZipping
+## Developing
 
-```shell
-#yarn install 
-yarn npm run build
-```
+### Built With
+List main libraries, frameworks used including versions (React, Angular etc...)
+
+### Prerequisites
+What is needed to set up the dev environment. For instance, global dependencies or any other tools. include download links.
+
 
 ### Setting up Dev
 
