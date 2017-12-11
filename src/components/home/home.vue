@@ -17,18 +17,35 @@
       <li><a href="http://vue-loader.vuejs.org/" target="_blank">vue-loader</a></li>
       <li><a href="https://github.com/vuejs/awesome-vue" target="_blank">awesome-vue</a></li>
     </ul>
+    <div v-for="data in myJson" v-bind:key="data">
+      <h3>{{ data.name }}</h3>
+      <span v-for="tag in data.tags" v-bind:key="tag">{{ tag }}</span>
+      <!-- age>>>>>>>>{{ data.age }} <br> <br> -->
+      <!-- <h3 ></h3> -->
+      </div>
   </div>
 </template>
 
 <script>
+import json from '../../assets/json/object.json'
 export default {
   name: 'Home',
   data() {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      msg: 'Welcome to Your Vue.js App',
+      myJson: json
     }
   }
 }
+// getQuestion(function (result) {
+//     console.log('result >>> ' + JSON.stringify(result))
+// })
+// function getQuestion(callback) {
+//     $.getJSON("../../assets/json/object.json", function (jsonObj) {
+//         result = jsonObj
+//         callback(result)
+//     })
+// }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
