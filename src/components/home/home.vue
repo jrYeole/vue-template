@@ -1,40 +1,73 @@
 <template>
-  <div class="hello">
+  <div class="hello container">
     <h1>hello world</h1>
-    <h2>Essential Links</h2>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank">Twitter</a></li>
-      <br>
-      <li><a href="http://vuejs-templates.github.io/webpack/" target="_blank">Docs for This Template</a></li>
-    </ul>
-    <h2>Ecosystem</h2>
-    <ul>
-      <li><a href="http://router.vuejs.org/" target="_blank">vue-router</a></li>
-      <li><a href="http://vuex.vuejs.org/" target="_blank">vuex</a></li>
-      <li><a href="http://vue-loader.vuejs.org/" target="_blank">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank">awesome-vue</a></li>
-    </ul>
-    <div v-for="data in myJson" v-bind:key="data">
+
+    <h3>completed tasks: {{todos.filter(todo => {return todo.done === true}).length}}</h3>
+    <h3>pending tasks: {{todos.filter(todo => {return todo.done === false}).length}}</h3>
+    <div class="row">
+      <todo v-on:delete-todo="deleteTodo" v-on:complete-todo="completeTodo" :todo.sync="todo" v-for="(todo, index) in todos" v-bind:index="index" v-bind:key="todo"></todo> 
+    </div>
+
+    <!-- <div v-for="data in myJson" v-bind:key="data">
       <h3>{{ data.name }}</h3>
       <span v-for="tag in data.tags" v-bind:key="tag">{{ tag }}</span>
-      <!-- age>>>>>>>>{{ data.age }} <br> <br> -->
-      <!-- <h3 ></h3> -->
-      </div>
+      </div> -->
   </div>
 </template>
 
 <script>
 import json from '../../assets/json/object.json'
+import Todo from '../todo/todo'
 export default {
   name: 'Home',
+  components: { Todo },
+  // props: [ 'todos'],
   data() {
     return {
       msg: 'Welcome to Your Vue.js App',
-      myJson: json
+      myJson: json,
+      isEditing: false,
+      todos: [{
+        title: 'todo A',
+        project: 'Project A',
+        done: false
+      },
+      {
+        title: 'todo B',
+        project: 'Project B',
+        done: false
+      },
+      {
+        title: 'todo C',
+        project: 'Project C',
+        done: true
+      },
+      {
+        title: 'todo D',
+        project: 'Project D',
+        done: true
+      },
+      {
+        title: 'todo E',
+        project: 'Project E',
+        done: false
+      },
+      {
+        title: 'todo F',
+        project: 'Project F',
+        done: false
+      }]
     }
+  },
+  methods: {
+   deleteTodo(todo) {
+     const todoIndex = this.todos.indexOf(todo);
+     this.todos.splice(todoIndex, 1);
+   },
+   completeTodo(todo) {
+    const todoIndex = this.todos.indexOf(todo);
+    this.todos[todoIndex].done = true;
+   }
   }
 }
 // getQuestion(function (result) {
@@ -50,19 +83,5 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-h1, h2 {
-  font-weight: normal;
-  // color: darken( #fff, 0.1);
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
+
 </style>
